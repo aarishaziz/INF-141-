@@ -1,0 +1,104 @@
+Subdomains:
+www.ics.uci.edu 1317
+duttgroup.ics.uci.edu 256
+vision.ics.uci.edu 42
+ngs.ics.uci.edu 41
+fano.ics.uci.edu 35
+archive.ics.uci.edu 24
+evoke.ics.uci.edu 22
+emj.ics.uci.edu 16
+sli.ics.uci.edu 13
+sdcl.ics.uci.edu 12
+hombao.ics.uci.edu 12
+seal.ics.uci.edu 9
+ftp.ics.uci.edu 9
+cml.ics.uci.edu 8
+computableplant.ics.uci.edu 7
+flamingo.ics.uci.edu 6
+cert.ics.uci.edu 6
+mondego.ics.uci.edu 6
+sprout.ics.uci.edu 6
+ironwood.ics.uci.edu 5
+jgarcia.ics.uci.edu 5
+honors.ics.uci.edu 5
+mhcid.ics.uci.edu 4
+chime.ics.uci.edu 3
+isg.ics.uci.edu 3
+hobbes.ics.uci.edu 3
+chenli.ics.uci.edu 3
+graphics.ics.uci.edu 2
+radicle.ics.uci.edu 2
+sherlock.ics.uci.edu 2
+grape.ics.uci.edu 2
+dynamo.ics.uci.edu 2
+pregelix.ics.uci.edu 2
+psearch.ics.uci.edu 1
+www-db.ics.uci.edu 1
+xtune.ics.uci.edu 1
+graphmod.ics.uci.edu 1
+mlearn.ics.uci.edu 1
+vcp.ics.uci.edu 1
+student-council.ics.uci.edu 1
+asterix.ics.uci.edu 1
+cbcl.ics.uci.edu 1
+malek.ics.uci.edu 1
+tastier.ics.uci.edu 1
+frost.ics.uci.edu 1
+jujube.ics.uci.edu 1
+
+Invalid links from the frontier:
+12
+
+Malformed or empty HTMLs encountered:
+8249
+
+Page with the most out links (any):
+http://www.ics.uci.edu/~agelfand/largeFam3.html
+(contains 1089 links)
+
+Page with the most out links (only valid):
+http://ngs.ics.uci.edu/blog/
+(contains 74 valid links)
+
+Average download time: 72.2412912853
+
+File types encountered in links:
+jpg 181195
+pdf 98069
+png 45467
+gif 35462
+ps 8411
+tif 7710
+gz 6189
+pptx 4522
+doc 4399
+ppt 3174
+zip 2640
+rar 1851
+tgz 1325
+names 792
+mp4 600
+mov 16
+mpeg 14
+exe 12
+tar 7
+jar 7
+data 7
+css 4
+docx 4
+tiff 3
+swf 3
+csv 3
+avi 3
+eps 3
+arff 2
+wav 2
+mid 1
+tex 1
+wmv 1
+xlsx 1
+js 1
+jpeg 1
+dmg 1
+xls 1
+mp3 1
