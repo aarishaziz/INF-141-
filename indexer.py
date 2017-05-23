@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+#keep track of how many occurences of each word and where they occur via dict,
+#then convert occurence count to TF freq.
+#then we put information for individual documents and infor for all the documents
+#(path, tf in the doc, dict about all tags) to build index_dict
+#this has words as keys and as values and lists of occurences of the words in all docs 
 
 import os
 import re
@@ -13,6 +18,7 @@ index_fname = 'index.json'
 
 tag_list = ('h1', 'h2', 'h3', 'b')
 
+# compile regular expressions for discovering tags
 tag_re = re.compile(r'^<(/?)(.*?)>$')
 
 # line containing punctuation symbols to strip them off
@@ -34,18 +40,25 @@ def tokenize(line):
     """
     Tokenize line.
     """
+    # remove whitespace at the start and at the end
     line = line.strip()
 
+    # two short dashes usually substitute a long one, which must have spaces 
     line = line.replace('--', ' -- ')
 
+    # we consider <strong> tag equivalent to <b>
     line = line.replace('<strong>', '<b>').replace('</strong>', '</b>')
 
+    # add spaces before and after tags to tokenize them as separate tokens
     line = line.replace('<', ' <').replace('>', '> ')
 
+    # split line by whitespace sequences
     tokens = line.split()
 
+    # strip off punctuation and lowercase tokens
     tokens = [token.strip(punctuation).lower() for token in tokens]
 
+    # remove empty tokens
     tokens = [token for token in tokens if token != ""]
     return tokens
 
@@ -68,6 +81,7 @@ def index_token(token, tag_list, tags_dict, counter_dict):
     counter_dict.setdefault(token, [0, defaultdict(int)])
     counter_dict[token][0] += 1
 
+    # check in all open tags (and the lack of them)
     for tag in tag_list:
         if tags_dict[tag]:
             counter_dict[token][1][tag] += 1
@@ -85,7 +99,7 @@ def create_index(root_folder, flist, index_fname):
     index_dict = defaultdict(list)
     total_word_count = 0
     for path in flist:
-        # dict to keep track of all open tags 
+        # dict to keep track of all open tags (initially all are closed)
         tags_dict = {tag: False for tag in tag_list}
 
         print 'Indexing', path
@@ -97,23 +111,27 @@ def create_index(root_folder, flist, index_fname):
         with open(os.path.join(root_folder, path), 'r') as infile:
             for line in infile:
                 for token in tokenize(line):
+                    # try to find out if the token is actually a tag
                     tag, closing = parse_tag(token)
-                    if tag is not None: 
+                    if tag is not None: # it is
                         if tag in tags_dict:
                             # update tags_dict
                             tags_dict[tag] = (closing != '/')
-                    else: 
+                    else: # no it's not
                         counter_dict = index_token(token, tag_list, tags_dict, counter_dict)
                         doc_word_count += 1
                         total_word_count += 1
 
+                        # try and stem the word
                         try:
                             stem = stemmer.stem(token)
 
                             # check if the stem is different from the word form
                             if stem != token:
+                                # if so, add it too but don't count it as a different word
                                 counter_dict = index_token('s.' + stem, tag_list, tags_dict, counter_dict)
                         except UnicodeDecodeError:
+                            # we don't want to stem non-English words anyway
                             pass
                         
         # convert token counts to TF
